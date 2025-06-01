@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Uniqlo Shop</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <header>
+  </header>
+  <ol>
+    <li><a href="/">Home</a></li>
+  </ol>
+
+  <h3> Favorate Toppings :</h3>
+  {% for topping in toppings %}
+
+    {% if topping == 14 %}
+      {{ topping * 100 }} <br>
+    {% else %}
+      {{ topping }} <br>
+    {% endif %}
+
+    
+  {% endfor %}
+  <hr>
+
+  {{ toppings.0 }} <br>
+
+  <h1>Hello World!</h1>
+  <footer>
+    <p>&copy; 2025 Uniqlo Clone. All rights reserved.</p>
+  </footer>
+</body>
+</html>
