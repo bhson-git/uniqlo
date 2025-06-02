@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <script>
+        // Send at least the email address to Woopra in case the user is logging
+        // in from a different device. Woopra prefers "emails" over "cookies".
+        woopra.identify({
+            username: "{{ username }}",
+            email: "{{ email }}"
+        })
+        woopra.track("login");
+    </script>
+
+    <h1>User Dashboard : {{ name }} </h1>
+    <a href="{{ url_for('home', **query_params)}}">Home</a>
+    <br>
+    <br>
+    <a href="{{ url_for('user_logout', **query_params)}}">Logout</a>
+
+
+{% endblock %}

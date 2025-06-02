@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Uniqlo Shop</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
   <ol>
     <li><a href="/">Home</a></li>
   </ol>
@@ -16,5 +10,5 @@
   <footer>
     <p>&copy; 2025 Uniqlo Clone. All rights reserved.</p>
   </footer>
-</body>
-</html>
+
+{% endblock %}

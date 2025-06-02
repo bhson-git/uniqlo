@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if name %}
+    <script>
+        woopra.track("signup", {
+            username: "{{ username }}",
+            name: "{{ name }}",
+            email: "{{ email }}",
+        });
+    </script>
+
+    <h1>Hi {{ name }}!</h1>
+    <h2>Successfully signed up!</h2>
+
+
+{% else %}
+    <h1>Sign Up</h1>
+    <br/>
+    <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            {{ form.username.label(class='form-label') }}
+            {{ form.username(class='form-control') }}
+
+            {{ form.name.label(class='form-label') }}
+            {{ form.name(class='form-control') }}
+
+            {{ form.email.label(class='form-label') }}
+            {{ form.email(class='form-control') }}
+            <br/>
+            {{ form.submit(class='btn btn-primary') }}
+        </form>
+    </div>
+{% endif %}
+
+
+<br/><br/><br/>
+
+    <h1>Users</h1>
+
+    <table class="table table-hover table-bordered table-striped">
+        {% for our_user in our_users %}
+            <tr>
+                <td>
+                    {{ our_user.id }}. {{ our_user.username }} <a href="{{ url_for('user_update', id=our_user.id, **query_params) }}">{{ our_user.name }}</a> - {{ our_user.email }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

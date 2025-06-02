@@ -1,0 +1,106 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('home', **query_params) }}">Uniqlo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li> -->
+
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Women</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Men</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Kids</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Baby</a>
+        </li>
+<!-- 
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+          <a class="nav-link" href="#">Men</a>
+          <a class="nav-link" href="#">Kids</a>
+          <a class="nav-link" href="#">Baby</a>
+        </li> -->
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li> -->
+      </ul>
+
+      <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ url_for('user_signup', **query_params) }}">[User Signup]</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ url_for('user_login', **query_params) }}">[User Login]</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ url_for('user_dashboard', **query_params) }}">[User Dash]</a>
+        </li>
+
+      </ul> -->
+
+
+
+      <ul class="navbar-nav mb-2 mb-lg-0"> {# 이 ul 태그는 검색 폼과 분리되어 우측 정렬을 돕습니다. #}
+        {% if current_user.is_authenticated %}
+          <li class="nav-item me-2 d-flex align-items-center"> {# me-2는 마진, d-flex/align-items-center는 세로 정렬 #}
+            <span class="navbar-text">
+              Hi, <strong>{{ current_user.username }}</strong>!
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-danger btn-sm" href="{{ url_for('user_logout', **query_params) }}">Log Out</a>
+          </li>
+        {% else %}
+          <li class="nav-item me-2">
+            <a class="btn btn-outline-primary btn-sm" href="{{ url_for('user_login', **query_params) }}">Log In</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('user_signup', **query_params) }}">Sign Up</a>
+          </li>
+        {% endif %}
+      </ul>
+
+
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Start of Woopra Code -->
+<script>
+  !function(){var t,o,c,e=window,n=document,r=arguments,a="script",i=["call","cancelAction","config","identify","push","track","trackClick","trackForm","update","visit"],s=function(){var t,o=this,c=function(t){o[t]=function(){return o._e.push([t].concat(Array.prototype.slice.call(arguments,0))),o}};for(o._e=[],t=0;t<i.length;t++)c(i[t])};for(e.__woo=e.__woo||{},t=0;t<r.length;t++)e.__woo[r[t]]=e[r[t]]=e[r[t]]||new s;(o=n.createElement(a)).async=1,o.src="https://static.woopra.com/js/w.js",(c=n.getElementsByTagName(a)[0]).parentNode.insertBefore(o,c)}("woopra");
+
+  woopra.config({
+    domain: "bhson.pythonanywhere.com",
+    outgoing_tracking: true,
+    download_tracking: true,
+    click_tracking: true
+  });
+  
+  woopra.track();
+</script>
+<!-- End of Woopra Code -->

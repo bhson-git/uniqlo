@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Update User</h1>
+
+{% if name %}
+    <br/>
+{% else %}
+
+    <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+        <form action="/user_update/{{ name_to_update.id }}" method="POST">
+            {{ form.hidden_tag() }}
+
+            {{ form.name.label(class='form-label') }}
+            {{ form.name(class='form-control', value=name_to_update.name) }}
+
+            {{ form.email.label(class='form-label') }}
+            {{ form.email(class='form-control', value=name_to_update.email) }}
+            <br/>
+            {{ form.submit(class='btn btn-primary') }}
+        </form>
+    </div>
+
+
+
+{% endif %}
+
+{% endblock %}

@@ -1,36 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Uniqlo Shop</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-<body>
-  <header>
-  </header>
-  <ol>
-    <li><a href="/">Home</a></li>
-  </ol>
 
-  <h3> Favorate Toppings :</h3>
-  {% for topping in toppings %}
+{% extends 'base.html' %}
 
-    {% if topping == 14 %}
-      {{ topping * 100 }} <br>
-    {% else %}
-      {{ topping }} <br>
-    {% endif %}
+{% block content %}
 
-    
-  {% endfor %}
-  <hr>
+  <div class="container mt-4">
+    <!-- <h1 class="text-center mb-4">Products, User: {{ current_user.username }}</h1> -->
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+          {% for product in products %}
+          <div class="col">
+              <div class="card h-100 shadow-sm">
+                  <img src="{{ url_for('static', filename='images/' + product.image) }}" class="card-img-top product-img" alt="{{ product.name }}">
+                  <div class="card-body d-flex flex-column">
+                      <h5 class="card-title">{{ product.name }}</h5>
+                      <p class="card-text price-text mt-auto">$ {{ product.price | int | format_currency }}</p>
+                      <a href="{{ url_for('product_detail', product_id=product.id, **query_params) }}" class="btn btn-secondary mt-2">Product Details</a>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
 
-  {{ toppings.0 }} <br>
-
-  <h1>Hello World!</h1>
-  <footer>
-    <p>&copy; 2025 Uniqlo Clone. All rights reserved.</p>
+  <footer class="mt-5 py-3 bg-light">
+    <div class="container">
+      <p class="text-end text-muted mb-0">&copy; 2025 Uniqlo Powered by Appier. All rights reserved.</p>
+    </div>
   </footer>
-</body>
-</html>
+
+
+  {% endblock %}

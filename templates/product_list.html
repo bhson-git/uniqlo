@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ category|capitalize if category else 'All Products' }}</h2>
+<div class="product-grid">
+  {% for p in products %}
+  <div class="product-card">
+    <a href="{{ url_for('product_detail', product_id=p.id) }}{{ utm_query }}">
+      <img src="{{ url_for('static', filename='images/' + p.image) }}" alt="{{ p.name }}" />
+      <h3>{{ p.name }}</h3>
+      <p>${{ "%.2f"|format(p.price) }}</p>
+    </a>
+    <a href="{{ url_for('add_to_cart', product_id=p.id) }}" class="btn-add-cart">Add to Cart</a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

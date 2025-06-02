@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <script>
+        woopra.track("logout");
+    </script>
+
+    <h1>User Loged out!</h1>
+
+    <a href="{{ url_for('home', **query_params)}}">Home</a>
+    <br>
+    <a href="{{ url_for('user_login', **query_params) }}">[User Login]</a>
+
+
+{% endblock %}
